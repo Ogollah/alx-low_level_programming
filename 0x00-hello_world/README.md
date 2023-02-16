@@ -5,8 +5,8 @@ C is a compiled language the source file should be compiled in order for them to
 
 The Compilation process has for stages.
 * Pre-processing       ```gcc -E main.c```
-* The compiling        ```gcc -S main.c```
-* The assembling       ```gcc -C main.c```
+* The compiling        ```gcc -C main.c```
+* The assembling       ```gcc -S main.c```
 * The linking          ```gcc main.c -o my_program```
 
 ## 0. Preprocessor
