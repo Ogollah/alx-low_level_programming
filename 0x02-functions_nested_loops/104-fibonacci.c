@@ -11,13 +11,13 @@ int main(void)
 	int i = 0;
 
 	printf("%lu, %lu, ", first, sec);
-	while (i <= 95)
+	while (i <= 96)
 	{
 		next = first + sec;
 		printf("%lu", next);
 		first = sec;
 		sec = next;
-		if (i < 97)
+		if (i < 96)
 		{
 			putchar(',');
 			putchar(' ');
