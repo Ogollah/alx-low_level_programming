@@ -17,7 +17,7 @@ int main(void)
 		printf("%ld", next);
 		first = sec;
 		sec = next;
-		if (i < 49)
+		if (i < 48)
 		{
 			putchar(',');
 			putchar(' ');
