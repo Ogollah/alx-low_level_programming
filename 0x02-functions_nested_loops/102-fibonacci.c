@@ -11,18 +11,19 @@ int main(void)
 	int i = 0;
 
 	printf("%ld, %ld, ", first, sec);
-	while (i <= 48)
+	while (i <= 47)
 	{
 		next = first + sec;
 		printf("%ld", next);
 		first = sec;
 		sec = next;
-		if (i < 48)
+		if (i < 47)
 		{
 			putchar(',');
 			putchar(' ');
 		}
 		i++;
 	}
+	putchar('\n');
 	return (0);
 }
