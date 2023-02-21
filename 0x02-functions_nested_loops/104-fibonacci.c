@@ -10,11 +10,11 @@ int main(void)
 	unsigned int first = 1, sec = 2, next;
 	int i = 0;
 
-	printf("%lu, %lu", first, sec);
+	printf("%u, %u", first, sec);
 	while (i < 96)
 	{
 		next = first + sec;
-		printf(", %lu", next);
+		printf(", %u", next);
 		first = sec;
 		sec = next;
 		i++;
