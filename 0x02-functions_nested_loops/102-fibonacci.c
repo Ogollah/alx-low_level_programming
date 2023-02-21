@@ -7,20 +7,22 @@
  */
 int main(void)
 {
-	int first = 1, sec = 2, next = 1, i = 0;
+	long int first = 1, sec = 2, next;
+	int i = 0;
 
-	while (i <= 49)
+	printf("%ld, %ld, ", first, sec);
+	while (i <= 48)
 	{
-		printf("%d", next);
+		next = first + sec;
+		printf("%ld", next);
 		first = sec;
 		sec = next;
-		next = first + sec;
-
 		if (i < 49)
 		{
 			putchar(',');
 			putchar(' ');
 		}
+		i++;
 	}
 	return (0);
 }
