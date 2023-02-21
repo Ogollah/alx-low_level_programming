@@ -11,7 +11,7 @@ int main(void)
 	int i = 0;
 
 	printf("%lu, %lu", first, sec);
-	while (i < 97)
+	while (i < 95)
 	{
 		next = first + sec;
 		printf(", %lu", next);
