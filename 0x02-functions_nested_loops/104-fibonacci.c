@@ -7,14 +7,14 @@
  */
 int main(void)
 {
-	unsigned int first = 1, sec = 2, next;
+	unsigned short int first = 1, sec = 2, next;
 	int i = 0;
 
-	printf("%u, %u", first, sec);
-	while (i < 95)
+	printf("%hu, %hu", first, sec);
+	while (i < 96)
 	{
 		next = first + sec;
-		printf(", %u", next);
+		printf(", %hu", next);
 		first = sec;
 		sec = next;
 		i++;
