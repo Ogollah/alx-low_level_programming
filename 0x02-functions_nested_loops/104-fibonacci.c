@@ -7,11 +7,11 @@
  */
 int main(void)
 {
-	unsigned long int first = 1, sec = 2, next;
+	unsigned int first = 1, sec = 2, next;
 	int i = 0;
 
 	printf("%lu, %lu", first, sec);
-	while (i < 97)
+	while (i < 96)
 	{
 		next = first + sec;
 		printf(", %lu", next);
