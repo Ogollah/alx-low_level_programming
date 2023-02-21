@@ -10,18 +10,13 @@ int main(void)
 	unsigned long int first = 1, sec = 2, next;
 	int i = 0;
 
-	printf("%lu, %lu, ", first, sec);
-	while (i <= 96)
+	printf("%lu, %lu", first, sec);
+	while (i <= 95)
 	{
 		next = first + sec;
-		printf("%lu", next);
+		printf(", %lu", next);
 		first = sec;
 		sec = next;
-		if (i < 96)
-		{
-			putchar(',');
-			putchar(' ');
-		}
 		i++;
 	}
 	putchar('\n');
