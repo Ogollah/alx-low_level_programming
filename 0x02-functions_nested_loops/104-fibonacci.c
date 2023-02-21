@@ -7,14 +7,14 @@
  */
 int main(void)
 {
-	unsigned long long int first = 1, sec = 2, next;
+	unsigned long int first = 1, sec = 2, next;
 	int i = 0;
 
-	printf("%llu, %llu", first, sec);
+	printf("%lu, %lu", first, sec);
 	while (i < 96)
 	{
 		next = first + sec;
-		printf(", %llu", next);
+		printf(", %lu", next);
 		first = sec;
 		sec = next;
 		i++;
