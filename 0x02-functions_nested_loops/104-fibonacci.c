@@ -17,7 +17,7 @@ int main(void)
 		printf("%lu", next);
 		first = sec;
 		sec = next;
-		if (i < 95)
+		if (i < 96)
 		{
 			putchar(',');
 			putchar(' ');
