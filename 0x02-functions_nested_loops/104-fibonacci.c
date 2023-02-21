@@ -14,7 +14,7 @@ int main(void)
 	while (i < 96)
 	{
 		next = first + sec;
-		printf(", %lu ", next);
+		printf(", %lu", next);
 		first = sec;
 		sec = next;
 		i++;
