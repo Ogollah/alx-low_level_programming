@@ -21,8 +21,4 @@ void rev_string(char *s)
 		s[num - 1 - i] = hold;
 		i++;
 	}
-	for (j = 0; j < num; j++)
-	{
-		s[j] != 0;
-	}
 }
