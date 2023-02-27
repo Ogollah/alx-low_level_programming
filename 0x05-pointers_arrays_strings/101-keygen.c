@@ -18,7 +18,7 @@ int main(void)
 
 	srand(time(NULL));
 
-	while (i < 100)
+	while (i < 90)
 	{
 		pass[i] = rand() % 78;
 		sum += (pass[i] + '0');
@@ -30,7 +30,7 @@ int main(void)
 			putchar(n + '0');
 			break;
 		}
-		i++;
+        i++;
 	}
 
 	return (0);
