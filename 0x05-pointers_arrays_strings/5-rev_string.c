@@ -23,6 +23,6 @@ void rev_string(char *s)
 	}
 	for (j = 0; j < num; j++)
 	{
-		s[j];
+		s[j] != 0;
 	}
 }
