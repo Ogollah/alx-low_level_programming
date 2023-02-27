@@ -23,7 +23,6 @@ void rev_string(char *s)
 	}
 	for (j = 0; j < num; j++)
 	{
-		_putchar(s[j]);
+		s[j];
 	}
-	_putchar('\n');
 }
