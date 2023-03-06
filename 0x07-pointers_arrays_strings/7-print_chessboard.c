@@ -1,10 +1,9 @@
 #include "main.h"
 /**
  * print_chessboard - Print a chessboard
+ * @a: 2Dimantional array that contains the current chess piece positions
  *
- * @a:                  2D array containing current chess piece positions
- *
- * Return:              None
+ * Return: Void
  */
 
 
