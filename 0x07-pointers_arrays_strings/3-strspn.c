@@ -19,8 +19,11 @@ unsigned int _strspn(char *s, char *accept)
 
 		for (j = 0; accept[j] != '\n'; j++)
 		{
+			if (accept[j] == s[i])
+			{
 			bytes++;
 			count = 1;
+			}
 		}
 		if (count == 0)
 		{
