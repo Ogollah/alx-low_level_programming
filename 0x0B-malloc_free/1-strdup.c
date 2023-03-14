@@ -13,13 +13,13 @@ char *_strdup(char *str)
 	char *mal;
 	unsigned int i, len = 0;
 
-	while (str[len] != 0)
-	{
-		len++;
-	}
 	if (str == NULL)
 	{
 		return (NULL);
+	}
+	while (str[len])
+	{
+		len++;
 	}
 
 	mal = malloc(sizeof(char) * len);
