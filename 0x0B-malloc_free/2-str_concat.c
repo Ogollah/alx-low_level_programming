@@ -6,7 +6,7 @@
  *@s1: First string
  *@s2: Second string.
  *
- *Return: A pointer to the duplicate string, NULL if insufficient memory.
+ *Return: A pointer to the concatenated string string, NULL if insufficient memory.
  */
 char *str_concat(char *s1, char *s2)
 {
