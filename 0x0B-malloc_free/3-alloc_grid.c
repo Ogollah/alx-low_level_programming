@@ -18,7 +18,7 @@ int **alloc_grid(int width, int height)
 		return (NULL);
 	}
 
-	mal = malloc(sizeof(int *) * height);
+	mal = malloc(sizeof(int *) * width);
 	if (mal == NULL)
 	{
 		return (NULL);
