@@ -8,7 +8,7 @@
  *
  *Return: A pointer to a 2D array.
  */
-int *alloc_grid(int width, int height)
+int **alloc_grid(int width, int height)
 {
 	int **mal;
 	int i, j;
