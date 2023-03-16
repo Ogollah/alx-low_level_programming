@@ -34,5 +34,6 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		mal[con++] = s1[i];
 	for (j = 0; j < n; j++)
 		mal[con++] = s2[j];
+	mal[len] = '\0';
 	return (mal);
 }
