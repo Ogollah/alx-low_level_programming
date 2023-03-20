@@ -38,10 +38,10 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (owner_cpy == NULL)
 		return (NULL);
 
-	for (i = 0; name[i] != '\0'; i++)
+	for (i = 0; i <= name_len; i++)
 		name_cpy[i] = name[i];
 
-	for (i = 0; owner[i] != '\0'; i++)
+	for (i = 0; i <= owner_len; i++)
 		owner_cpy[i] = owner[i];
 
 	new_dog->name = name_cpy;
