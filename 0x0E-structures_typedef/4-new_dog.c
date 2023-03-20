@@ -15,13 +15,14 @@ dog_t *new_dog(char *name, float age, char *owner)
 	char *name_cpy, *owner_cpy;
 	unsigned int i, name_ln = 0, owner_ln = 0;
 
-	dog_name = malloc(sizeof(div_t));
-	if (name == NULL)
-		return (NULL);
 	if (name == NULL || age < 0 || owner == NULL)
-	{	free(dog_name);
+	{
+		free(dog_name);
 		return (NULL);
 	}
+	dog_name = malloc(sizeof(div_t));
+	if (dog_name == NULL)
+		return (NULL);
 	while (name[name_ln])
 	{
 		name_ln++;
