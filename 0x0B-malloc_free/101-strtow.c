@@ -40,7 +40,7 @@ char **strtow(char *str)
 
 	if (str == NULL || *str == '\0')
 		return (NULL);
-	num_count = count_words(str);
+	num_count = count_num_words(str);
 	if (num_count == 1)
 		return (NULL);
 	wmal = (char **)malloc(num_count * sizeof(char *));
