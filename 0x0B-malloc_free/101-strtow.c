@@ -14,7 +14,13 @@ int count_num_words(char *c)
 
 	for (i = 0; c[i]; i++)
 	{
-		num++;
+		if (c[i] == ' ')
+		{
+			if (c[i + 1] != ' ' && c[i + 1] != '\0')
+				num++;
+		}
+		else if (i == 0)
+			num++;
 	}
 	return (num + 1);
 }
