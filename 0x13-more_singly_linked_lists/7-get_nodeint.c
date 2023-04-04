@@ -22,6 +22,4 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 			return (head);
 		}
 	}
-	if (flag == 0)
-		return (NULL);
 }
