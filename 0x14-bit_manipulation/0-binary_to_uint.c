@@ -1,37 +1,6 @@
 #include "main.h"
 
 /**
- *_atoi - Converts a string to an integer
- *@s: String to be converted
- *
- *Return: Converted integer
- */
-int _atoi(char *s)
-{
-	int sign;
-	unsigned int num;
-	char *str;
-
-	str = s;
-	num = 0;
-	sign = 1;
-	while (*str != 0 && (*str < '0' || *str > '9'))
-	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
-	}
-	if (*str != 0)
-	{
-		do {
-			num = num * 10 + (*str - '0');
-			str++;
-		} while (*str >= '0' && *str <= '9');
-	}
-	return (num * sign);
-}
-
-/**
  *binary_to_uint - Converts a binary number to an unsigned int.
  *@b: A pointer to a string of 0 and 1 chars.
  *
@@ -39,10 +8,9 @@ int _atoi(char *s)
  */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int binary_dec = 0, i, bin_num;
-	unsigned int base = 1, temp;
+	unsigned int dec = 0, i, count = 0, base = 2, j;
 
-	if (!b)
+	if (b == NULL)
 		return (0);
 
 	for (i = 0; b[i] != 0; i++)
@@ -52,20 +20,32 @@ unsigned int binary_to_uint(const char *b)
 			return (0);
 		}
 	}
-	bin_num =  _atoi(b);
 
-	temp = bin_num;
-
-	while (temp)
+	while (b[count])
 	{
-		int last_dig = temp % 10;
+		count++;
+	}
+	for (i = 0; b[i] != 0; i++)
+	{
+		if (b[count - 1] == '1')
+		{
+			if (i == 0)
+			{
+				dec = 1;
+			}
+			else
+			{
+				unsigned int result = 1;
 
-		temp = temp / 10;
-
-		binary_dec += last_dig * base;
-
-		base = base * 2;
+				for (j = 0; j < i; j++)
+				{
+					result *= base;
+				}
+				 dec += result;
+			}
+		}
+		count -= 1;
 	}
 
-	return (binary_dec);
+	return (dec);
 }
