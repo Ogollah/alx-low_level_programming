@@ -3,9 +3,9 @@
 /**
  *get_bit - Get bit at a given position.
  *@n: Number to conver to binary.
- *@index: Byte index to return
+ *@index: Bit index to return
  *
- *Return: Byte value else -1.
+ *Return: Bit value else -1.
  */
 int get_bit(unsigned long int n, unsigned int index)
 {
