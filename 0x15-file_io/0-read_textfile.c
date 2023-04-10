@@ -16,7 +16,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (filename == NULL)
 		return (0);
 
-	file = open(filename, O_RDONLY);
+	file = fopen(filename, O_RDONLY);
 
 	if (file == NULL)
 		return (0);
@@ -26,11 +26,11 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (buff == NULL)
 		return (0);
 
-	num_read = read(file, buff, letters);
+	num_read = fread(buff, 1, letters, file);
 
-	num_write = write(STDOUT_FILENO, buff, num_read);
+	num_write = fwrite(buff, 1, num_read, stdout);
 
-	close(file);
+	fclose(file);
 
 	if (num_write != num_read)
 		return (0);
