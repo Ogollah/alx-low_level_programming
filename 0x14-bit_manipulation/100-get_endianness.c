@@ -7,9 +7,9 @@
  */
 int get_endianness(void)
 {
-	endian.i = 1;
+	int i = 1;
 	int res;
 
-	res = (endian.c[0] == 1) ? 1 : 0;
+	res = (*((char *) &i) == 1) ? 1 : 0;
 	return (res);
 }
