@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 	}
 
 	to_file_desc = open(argv[2], O_CREAT | O_WRONLY |
-			    O_TRUNC | S_IRUSR | S_IWUSR | S_IRGRP |
+			    O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP |
 			    S_IWGRP | S_IROTH);
 
 	if (to_file_desc == -1)
