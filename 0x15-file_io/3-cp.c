@@ -1,92 +1,74 @@
 #include "main.h"
 
 /**
+ *print_error - Prints error message.
+ *@message:Message to print
+ *@arg: Value to print.
+ *
+ *Return: Void
+ */
+void print_error(char *message, char *arg)
+{
+	dprintf(STDERR_FILENO, message, arg);
+}
+
+/**
  *main -Copy text to another file.
  *@argc: arg count.
  *@argv: arg array.
  *
- *Return: exit 0.
+ *Return: 0.
  */
 int main(int argc, char *argv[])
 {
-	int ret_value, from_file_desc, to_file_desc, num_read, num_write;
-	char buff[BUFFER_SIZE];
+	ssize_t num_read;
+	char *file_from = argv[1], *file_to = argv[2], buffer[BUFFER_SIZE];
 
 	if (argc != 3)
 	{
-		dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n",
-			argv[0]);
+		print_error("Usage: cp file_from file_to\n", NULL);
 		exit(97);
 	}
 
-	from_file_desc = open(argv[1], O_RDONLY);
+	int file_desc_from = open(file_from, O_RDONLY);
 
-	if (from_file_desc == -1)
+	if (file_desc_from == -1)
 	{
-		dprint(STDERR_FILENO, "Error: Can't read from file %s\n",
-		       argv[1]);
+		print_error("Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
 
-	to_file_desc = open(argv[2], O_CREAT | O_WRONLY |
-			    O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP |
-			    S_IWGRP | S_IROTH);
-
-	if (to_file_desc == -1)
+	int file_desc_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR |
+				S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+	if (file_desc_to == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		print_error("Error: Can't write to %s\n", file_to);
 		exit(99);
 	}
 
-	num_read = read(from_file_desc, buff, BUFFER_SIZE);
-
-	if (num_read == -1)
+	while ((num_read = read(file_desc_from, buffer, BUFFER_SIZE)) > 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n",
-			argv[1]);
-		close(from_file_desc);
-
-		if (close(from_file_desc) == -1)
+		if (write(file_desc_to, buffer, num_read) == -1)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n",
-				from_file_desc);
-			exit(100);
-		}
-
-		close(to_file_desc);
-		if (close(to_file_desc) == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n",
-				to_file_desc);
-			exit(100);
-		}
-		exit(98);
-	}
-
-	while (num_read > 0)
-	{
-		if (num_write != num_read)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n",
-				argv[2]);
-			close(from_file_desc);
-			if (close(from_file_desc) == -1)
-			{
-				dprintf(STDERR_FILENO,
-					"Error: Can't close fd %d\n",
-					from_file_desc);
-				exit(100);
-			}
-			close(to_file_desc);
-			if (close(to_file_desc) == -1)
-			{
-				dprintf(STDERR_FILENO,
-					"Error: Can't close fd %d\n",
-					to_file_desc);
-				exit(100);
-			}
+			print_error("Error: Can't write to %s\n", file_to);
 			exit(99);
 		}
 	}
-	exit(0);
+	if (num_read == -1)
+	{
+		print_error("Error: Can't read from file %s\n", file_from);
+		exit(98);
+	}
+
+	if (close(file_desc_from) == -1)
+	{
+		print_error("Error: Can't close fd %d\n", file_desc_from);
+		exit(100);
+	}
+	if (close(file_desc_to) == -1)
+	{
+		print_error("Error: Can't close fd %d\n", file_desc_to);
+		exit(100);
+	}
+	return (0);
 }
