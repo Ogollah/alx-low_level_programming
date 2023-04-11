@@ -44,7 +44,6 @@ int main(int argc, char *argv[])
 	}
 
 	num_read = read(from_file_desc, buff, BUFFER_SIZE);
-	num_write = write(to_file_desc, buff, num_read);
 
 	if (num_read == -1)
 	{
