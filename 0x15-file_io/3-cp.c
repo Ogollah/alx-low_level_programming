@@ -1,10 +1,5 @@
 #include "main.h"
 
-void check_read_neg(int num_read)
-{
-    
-}
-
 /**
  *main -Copy text to another file.
  *@argc: arg count.
