@@ -56,7 +56,7 @@ void print_arg_error(int arg)
  */
 int main(int argc, char *argv[])
 {
-	ssize_t num_r, df, dt, p = (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+	int num_r, df, dt, p = (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	char *file_from = argv[1], *file_to = argv[2], buffer[BUFFER_SIZE];
 
 	print_arg_error(argc);
