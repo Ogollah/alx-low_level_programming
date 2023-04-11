@@ -9,14 +9,13 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	ssize_t num_write, num_read;
-	FILE *file;
+	ssize_t num_write, num_read, file;
 	char *buff;
 
 	if (filename == NULL)
 		return (0);
 
-	file = fopen(filename, "r");
+	file = open(filename, O_RDONLY);
 
 	if (file == NULL)
 		return (0);
@@ -26,11 +25,11 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (buff == NULL)
 		return (0);
 
-	num_read = fread(buff, 1, letters, file);
+	num_read = read(file, buff, letters);
 
-	num_write = fwrite(buff, 1, num_read, stdout);
+	num_write = write(STDOUT_FILENO, buff, num_read);
 
-	fclose(file);
+	close(file);
 
 	if (num_write != num_read)
 		return (0);
