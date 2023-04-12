@@ -1,7 +1,5 @@
 #include "main.h"
 
-void print_error(char *message, char *arg);
-
 void print_arg_error(int x);
 
 /**
@@ -14,14 +12,14 @@ void print_arg_error(int x);
 int main(int argc, char *argv[])
 {
 	int fd_r, fd_w, i, j, k;
-	char buf[BUFSIZ];
+	char buf[BUFSIZ], *file_from = argv[1], *file_to = argv[2];
 
 	print_arg_error(argc);
 
 	fd_r = open(argv[1], O_RDONLY);
 	if (fd_r == -1)
 	{
-		print_error("Error: Can't read from file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
 	fd_w = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
@@ -29,7 +27,7 @@ int main(int argc, char *argv[])
 	{
 		if (fd_w == -1 || write(fd_w, buf, i) == -1)
 		{
-			print_error("Error: Can't write to %s\n", argv[2]);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
 			close(fd_r);
 			exit(99);
 		}
@@ -37,29 +35,17 @@ int main(int argc, char *argv[])
 
 	if (i == -1)
 	{
-		print_error("Error: Can't read from file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
 	j = close(fd_r);
 	k = close(fd_w);
 	if (j == -1 || k == -1)
 	{
-		print_error("Error: Can't close fd %d\n", fd_r);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_r);
 		exit(100);
 	}
 	return (0);
-}
-
-/**
- *print_error - Prints error message.
- *@message:Message to print
- *@arg: Value to print.
- *
- *Return: Void
- */
-void print_error(char *message, char *arg)
-{
-	dprintf(STDERR_FILENO, message, arg);
 }
 
 /**
