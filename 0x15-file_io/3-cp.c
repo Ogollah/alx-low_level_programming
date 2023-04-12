@@ -42,7 +42,7 @@ void print_arg_error(int arg)
 {
 	if (arg != 3)
 	{
-		print_error("Usage: cp file_from file_to\n", NULL);
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 }
