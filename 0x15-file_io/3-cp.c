@@ -1,31 +1,8 @@
 #include "main.h"
 
-/**
- *print_error - Prints error message.
- *@message:Message to print
- *@arg: Value to print.
- *
- *Return: Void
- */
-void print_error(char *message, char *arg)
-{
-	dprintf(STDERR_FILENO, message, arg);
-}
+void print_error(char *message, char *arg);
 
-/**
- *print_arg_error - Print error if arg is not 3.
- *@arg: No of arg
- *
- *Return: Void
- */
-void print_arg_error(int arg)
-{
-	if (arg != 3)
-	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		exit(97);
-	}
-}
+void print_arg_error(int x);
 
 /**
  *main -Copy text to another file.
@@ -71,4 +48,31 @@ int main(int argc, char *argv[])
 		exit(100);
 	}
 	return (0);
+}
+
+/**
+ *print_error - Prints error message.
+ *@message:Message to print
+ *@arg: Value to print.
+ *
+ *Return: Void
+ */
+void print_error(char *message, char *arg)
+{
+	dprintf(STDERR_FILENO, message, arg);
+}
+
+/**
+ *print_arg_error - Print error if arg is not 3.
+ *@x: No of arg
+ *
+ *Return: Void
+ */
+void print_arg_error(int x)
+{
+	if (x != 3)
+	{
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
 }
