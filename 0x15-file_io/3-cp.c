@@ -16,13 +16,13 @@ int main(int argc, char *argv[])
 
 	print_arg_error(argc);
 
-	fd_r = open(argv[1], O_RDONLY);
+	fd_r = open(file_from, O_RDONLY);
 	if (fd_r == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
-	fd_w = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	fd_w = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	while ((i = read(fd_r, buf, BUFSIZ)) > 0)
 	{
 		if (fd_w == -1 || write(fd_w, buf, i) == -1)
@@ -38,9 +38,8 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
-	j = close(fd_r);
-	k = close(fd_w);
-	if (j == -1 || k == -1)
+
+	if (close(fd_r) == -1 || close(fd_w) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_r);
 		exit(100);
