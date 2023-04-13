@@ -11,7 +11,7 @@ void print_arg_error(int x);
  */
 int main(int argc, char *argv[])
 {
-	int fd_r, fd_w, i, j, k;
+	int fd_r, fd_w, i;
 	char buf[BUFSIZ], *file_from = argv[1], *file_to = argv[2];
 
 	print_arg_error(argc);
@@ -38,7 +38,6 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
-
 	if (close(fd_r) == -1 || close(fd_w) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_r);
