@@ -23,7 +23,7 @@ void check_agrc(int arg)
  *
  *Return: 0 Always (Success).
  */
-int main(int argc, char **argv)
+int main(int argc, char **argv[])
 {
 	int file_dec, file_r;
 	Elf64_Ehdr *ehdr;
