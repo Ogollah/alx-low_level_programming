@@ -22,7 +22,7 @@ void print_elf_data(unsigned char *ident);
 void print_elf_version(unsigned char *ident);
 void print_elf_osabi(unsigned char *ident);
 void print_elf_abi(unsigned char *ident);
-void print_elf_type(unsigned char *e_type);
-void print_elf_entry(unsigned char *e_entry);
+void print_elf_type(Elf64_Ehdr header);
+void print_elf_entry(Elf64_Ehdr e_entry);
 
 #endif

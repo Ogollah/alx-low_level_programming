@@ -13,7 +13,7 @@ void elf_close(int fl_d);
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	int file_dec, file_r;
-	Elf64_Ehdr *ehdr;
+	Elf64_Ehdr *ehdr, header;
 
 	file_dec = open(argv[1], O_RDONLY);
 
@@ -45,8 +45,8 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_elf_version(ehdr->e_ident);
 	print_elf_osabi(ehdr->e_ident);
 	print_elf_abi(ehdr->e_ident);
-	print_elf_type(ehdr->e_type);
-	print_elf_entry(ehdr->e_entry);
+	print_elf_type(header);
+	print_elf_entry(header);
 
 	free(ehdr);
 	elf_close(file_dec);
@@ -61,7 +61,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
  */
 void elf_close(int fl_d)
 {
-	if (clsoe(fl_d) == -1)
+	if (close(fl_d) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fl_d);
 		exit(98);

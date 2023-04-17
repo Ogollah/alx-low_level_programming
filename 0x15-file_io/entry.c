@@ -6,7 +6,8 @@
  *
  *Return: Void.
  */
-void print_elf_entry(unsigned char *e_entry)
+void print_elf_entry(Elf64_Ehdr e_entry)
 {
-	printf("  Entry point address:               %lx\n", (unsigned long)e_entry);
+	printf("  Entry point address:               %lx\n",
+	(unsigned long)e_entry.e_entry);
 }
