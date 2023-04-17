@@ -1,21 +1,6 @@
 #include "main.h"
 
 /**
- *check_agrc - Print error if arg is not 2.
- *@arg: No of arg
- *
- *Return: Void
- */
-void check_agrc(int arg)
-{
-	if (arg != 2)
-	{
-		dprintf(STDERR_FILENO, "Usage: elf_header elf_filename\n");
-		exit(98);
-	}
-}
-
-/**
  *main - Displays the information contained in
  *       the ELF header at the start of an ELF file.
  *@argc: Arg count.
@@ -28,7 +13,7 @@ int main(int argc, char *argv[])
 	int file_dec, file_r;
 	Elf64_Ehdr *ehdr;
 
-	void check_agrc(argc);
+	void argc(void);
 	file_dec = open(argv[1], O_RDONLY);
 
 	if (file_dec == -1)
