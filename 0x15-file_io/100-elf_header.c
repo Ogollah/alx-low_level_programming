@@ -8,12 +8,11 @@
  *
  *Return: 0 Always (Success).
  */
-int main(int argc, char *argv[])
+int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	int file_dec, file_r;
 	Elf64_Ehdr *ehdr;
 
-	void argc(void);
 	file_dec = open(argv[1], O_RDONLY);
 
 	if (file_dec == -1)
