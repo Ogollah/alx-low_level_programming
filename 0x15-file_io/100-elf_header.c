@@ -1,5 +1,7 @@
 #include "main.h"
 
+void elf_close(int fl_d);
+
 /**
  *main - Displays the information contained in
  *       the ELF header at the start of an ELF file.
@@ -24,14 +26,14 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 
 	if (ehdr == NULL)
 	{
-		close(file_dec);
+		elf_close(file_dec);
 		dprintf(STDERR_FILENO, "Error: Can't read the file %s\n", argv[1]);
 		exit(98);
 	}
 	file_r = read(file_dec, ehdr, sizeof(Elf64_Ehdr));
 	if (file_r == -1)
 	{
-		close(file_dec);
+		elf_close(file_dec);
 		dprintf(STDERR_FILENO, "Error: Can't read the file %s\n", argv[1]);
 		exit(98);
 	}
@@ -47,6 +49,21 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_elf_entry(ehdr->e_entry);
 
 	free(ehdr);
-	close(file_dec);
+	elf_close(file_dec);
 	return (0);
+}
+
+/**
+ *elf_close - Closes fd file.
+ *@fl_d: file to close.
+ *
+ *Return: Void.
+ */
+void elf_close(int fl_d)
+{
+	if (clsoe(fl_d) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fl_d);
+		exit(98);
+	}
 }
