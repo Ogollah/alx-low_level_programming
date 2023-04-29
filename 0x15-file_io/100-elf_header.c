@@ -128,9 +128,9 @@ void print_elf_abi(unsigned char *ident)
 void print_elf_class(unsigned char *ident)
 {
 	if (ident[EI_CLASS] == ELFCLASS32)
-		printf("  Class:                             ELF32");
+		printf("  Class:                             ELF32\n");
 	else if (ident[EI_CLASS] == ELFCLASS64)
-		printf("  Class:                             ELF64");
+		printf("  Class:                             ELF64\n");
 	else if (ident[EI_CLASS] == ELFCLASSNONE)
 		printf("  Class:                             none\n");
 	else
@@ -171,6 +171,7 @@ void print_elf_magic(unsigned char *ident)
 	while (ident[counter] < EI_NIDENT)
 	{
 		printf("%02x ", ident[counter] & 0xff);
+		counter++;
 	}
 	printf("\n");
 }
@@ -231,7 +232,7 @@ void print_elf_type(Elf64_Ehdr e_type)
 	else if (e_type.e_type == ET_DYN)
 		printf("  Type:                              DYN (Shared file)\n");
 	else if (e_type.e_type == ET_CORE)
-		printf("  Type:                              CORE (Core file)");
+		printf("  Type:                              CORE (Core file)\n");
 	else
 		printf("  Type:                              unknown\n");
 }
@@ -245,6 +246,6 @@ void print_elf_type(Elf64_Ehdr e_type)
 void print_elf_version(unsigned char *ident)
 {
 	if (ident[EI_VERSION] == EV_CURRENT)
-		printf("  Version:                           %d (current)",
+		printf("  Version:                           %d (current)\n",
 		ident[EI_VERSION]);
 }
