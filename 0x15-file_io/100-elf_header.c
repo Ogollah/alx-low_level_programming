@@ -202,25 +202,25 @@ void print_elf_osabi(unsigned char *ident)
 	if (ident[EI_OSABI] == ELFOSABI_NONE)
 		printf("  OS/ABI:                            UNIX - System V\n");
 	else if (ident[EI_OSABI] == ELFOSABI_AIX)
-		printf("  OS/ABI:                            UNIX - System AIX\n");
+		printf("  OS/ABI:                            UNIX - AIX\n");
 	else if (ident[EI_OSABI] == ELFOSABI_HPUX)
-		printf("  OS/ABI:                            UNIX - System HP-UX\n");
+		printf("  OS/ABI:                            UNIX - HP-UX\n");
 	else if (ident[EI_OSABI] == ELFOSABI_NETBSD)
-		printf("  OS/ABI:                            UNIX - System NetBSD\n");
+		printf("  OS/ABI:                            UNIX - NetBSD\n");
 	else if (ident[EI_OSABI] == ELFOSABI_LINUX)
-		printf("  OS/ABI:                            UNIX - System Linux\n");
+		printf("  OS/ABI:                            UNIX - Linux\n");
 	else if (ident[EI_OSABI] == ELFOSABI_SOLARIS)
-		printf("  OS/ABI:                            UNIX - System Solaris\n");
+		printf("  OS/ABI:                            UNIX - Solaris\n");
 	else if (ident[EI_OSABI] == ELFOSABI_IRIX)
-		printf("  OS/ABI:                            UNIX - System IRIX\n");
+		printf("  OS/ABI:                            UNIX - IRIX\n");
 	else if (ident[EI_OSABI] == ELFOSABI_FREEBSD)
-		printf("  OS/ABI:                            UNIX - System FreeBSD\n");
+		printf("  OS/ABI:                            UNIX - FreeBSD\n");
 	else if (ident[EI_OSABI] == ELFOSABI_TRU64)
-		printf("  OS/ABI:                            UNIX - System TRU64\n");
+		printf("  OS/ABI:                            UNIX - TRU64\n");
 	else if (ident[EI_OSABI] == ELFOSABI_ARM)
-		printf("  OS/ABI:                            UNIX - System ARM\n");
+		printf("  OS/ABI:                            UNIX - ARM\n");
 	else if (ident[EI_OSABI] == ELFOSABI_ARM_AEABI)
-		printf("  OS/ABI:                            UNIX - System ARM_AEABI\n");
+		printf("  OS/ABI:                            UNIX - ARM_AEABI\n");
 	else if (ident[EI_OSABI] == ELFOSABI_STANDALONE)
 		printf("  OS/ABI:                            Standalone App\n");
 	else
