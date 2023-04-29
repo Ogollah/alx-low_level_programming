@@ -8,8 +8,8 @@ void print_elf_data(unsigned char *ident);
 void print_elf_version(unsigned char *ident);
 void print_elf_osabi(unsigned char *ident);
 void print_elf_abi(unsigned char *ident);
-void print_elf_type(Elf64_Ehdr header);
-void print_elf_entry(Elf64_Ehdr e_entry);
+void print_elf_type(unsigned int e_type, unsigned char *ident);
+void print_elf_entry(unsigned long int e, unsigned char *ident);
 
 /**
  *main - Displays the information contained in
@@ -55,8 +55,8 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_elf_version(ehdr->e_ident);
 	print_elf_osabi(ehdr->e_ident);
 	print_elf_abi(ehdr->e_ident);
-	print_elf_type(header);
-	print_elf_entry(header);
+	print_elf_type(ehdr->e_type, ehdr->e_ident);
+	print_elf_entry(ehdr->e_entry, ehdr->e_ident);
 
 	free(ehdr);
 	elf_close(file_dec);
@@ -80,14 +80,25 @@ void elf_close(int fl_d)
 
 /**
  *print_elf_entry - Prints the TYPE of ELF.
- *@e_entry: Pointer to the ELF type in the header.
+ *@e: Pointer to the ELF type in the header.
+ *@ident: Pointer to ELF version headers.
  *
  *Return: Void.
  */
-void print_elf_entry(Elf64_Ehdr e_entry)
+void print_elf_entry(unsigned long int e, unsigned char *ident)
 {
-	printf("  Entry point address:               %lx\n",
-	(unsigned long)e_entry.e_entry);
+	printf("  Entry point address:               ");
+
+	if (ident[EI_DATA] == ELFDATA2MSB)
+	{
+		e = ((e << 8) & 0xFF00FF00) |
+			  ((e >> 8) & 0xFF00FF);
+		e = (e << 16) | (e >> 16);
+	}
+	if (ident[EI_CLASS] == ELFCLASS32)
+		printf("%#x\n", (unsigned int)e);
+	else
+		printf("%#lx\n", e);
 }
 
 /**
@@ -220,25 +231,26 @@ void print_elf_osabi(unsigned char *ident)
 /**
  *print_elf_type - Prints the TYPE of ELF.
  *@e_type: Pointer to the ELF type in the header.
+ *@ident: Pointer to ELF version headers.
  *
  *Return: Void.
  */
-void print_elf_type(Elf64_Ehdr e_type)
+void print_elf_type(unsigned int e_type, unsigned char *ident)
 {
-	printf("ELF TYPE: ");
+	printf("  Type:                              ");
 
-	if (e_type.e_type == ET_NONE)
-		printf("  Type:                              NONE (None)\n");
-	else if (e_type.e_type == ET_REL)
-		printf("  Type:                              REL (Relocatable file)\n");
-	else if (e_type.e_type == ET_EXEC)
-		printf("  Type:                              EXEC (Executable file)\n");
-	else if (e_type.e_type == ET_DYN)
-		printf("  Type:                              DYN (Shared file)\n");
-	else if (e_type.e_type == ET_CORE)
-		printf("  Type:                              CORE (Core file)\n");
+	if (e_type == ET_NONE)
+		printf("NONE (None)\n");
+	else if (e_type == ET_REL)
+		printf("REL (Relocatable file)\n");
+	else if (e_type == ET_EXEC)
+		printf("EXEC (Executable file)\n");
+	else if (e_type == ET_DYN)
+		printf("DYN (Shared file)\n");
+	else if (e_type == ET_CORE)
+		printf("CORE (Core file)\n");
 	else
-		printf("  Type:                              unknown\n");
+		printf("unknown\n");
 }
 
 /**
@@ -252,4 +264,6 @@ void print_elf_version(unsigned char *ident)
 	if (ident[EI_VERSION] == EV_CURRENT)
 		printf("  Version:                           %d (current)\n",
 		ident[EI_VERSION]);
+	else
+		printf("\n");
 }
