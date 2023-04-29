@@ -22,7 +22,7 @@ void print_elf_entry(unsigned long int e, unsigned char *ident);
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	int file_dec, file_r;
-	Elf64_Ehdr *ehdr, header;
+	Elf64_Ehdr *ehdr;
 
 	file_dec = open(argv[1], O_RDONLY);
 
@@ -237,6 +237,9 @@ void print_elf_osabi(unsigned char *ident)
  */
 void print_elf_type(unsigned int e_type, unsigned char *ident)
 {
+	if (ident[EI_DATA == ELFDATA2MSB])
+		e_type >>= 8;
+
 	printf("  Type:                              ");
 
 	if (e_type == ET_NONE)
