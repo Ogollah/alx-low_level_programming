@@ -264,9 +264,9 @@ void print_elf_type(unsigned int e_type, unsigned char *ident)
  */
 void print_elf_version(unsigned char *ident)
 {
+	printf("  Version:                           ");
 	if (ident[EI_VERSION] == EV_CURRENT)
-		printf("  Version:                           %d (current)\n",
-		ident[EI_VERSION]);
+		printf("%d (current)\n", ident[EI_VERSION]);
 	else
-		printf("\n");
+		printf("%i\n", ident[EI_VERSION]);
 }
