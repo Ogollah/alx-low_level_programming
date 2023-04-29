@@ -237,7 +237,7 @@ void print_elf_osabi(unsigned char *ident)
  */
 void print_elf_type(unsigned int e_type, unsigned char *ident)
 {
-	if (ident[EI_DATA == ELFDATA2MSB])
+	if (ident[EI_DATA] == ELFDATA2MSB)
 		e_type >>= 8;
 
 	printf("  Type:                              ");
