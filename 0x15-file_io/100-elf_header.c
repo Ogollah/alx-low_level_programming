@@ -42,6 +42,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	file_r = read(file_dec, ehdr, sizeof(Elf64_Ehdr));
 	if (file_r == -1)
 	{
+		free(ehdr);
 		elf_close(file_dec);
 		dprintf(STDERR_FILENO, "Error: Can't read the file %s\n", argv[1]);
 		exit(98);
