@@ -1,0 +1,74 @@
+#include "main.h"
+
+void print_arg_error(int x);
+
+/**
+ * main - Copy text from one file to another.
+ * @argc: Number of arguments.
+ * @argv: Array of arguments.
+ *
+ * Return: 0 on success, otherwise error code.
+ */
+int main(int argc, char *argv[])
+{
+    int fd_from, fd_to, num_read, num_written;
+    char buf[BUFSIZ];
+
+    print_arg_error(argc);
+
+    fd_from = open(argv[1], O_RDONLY);
+    if (fd_from == -1)
+    {
+        dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+        exit(98);
+    }
+
+    fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+    if (fd_to == -1)
+    {
+        dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
+        close(fd_from);
+        exit(99);
+    }
+
+    while ((num_read = read(fd_from, buf, BUFSIZ)) > 0)
+    {
+        num_written = write(fd_to, buf, num_read);
+        if (num_written == -1)
+        {
+            dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
+            close(fd_from);
+            close(fd_to);
+            exit(99);
+        }
+    }
+
+    if (num_read == -1)
+    {
+        dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+        exit(98);
+    }
+
+    if (close(fd_from) == -1 || close(fd_to) == -1)
+    {
+        dprintf(STDERR_FILENO, "Error: Can't close file descriptor\n");
+        exit(100);
+    }
+
+    return (0);
+}
+
+/**
+ * print_arg_error - Print error message if argument count is not 3.
+ * @x: Number of arguments.
+ *
+ * Return: void
+ */
+void print_arg_error(int x)
+{
+    if (x != 3)
+    {
+        dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+        exit(97);
+    }
+}
