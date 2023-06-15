@@ -1,5 +1,4 @@
-# 
-0x17. C - Doubly linked lists
+# 0x17. C - Doubly linked lists
 ### `C`  `Algorithm` `Data structure`
 
 #### Please use this data structure for this project:
@@ -12,7 +11,7 @@
  * @next: points to the next node
  *
  * Description: doubly linked list node structure
- * 
+ *
  */
 typedef struct dlistint_s
 {
