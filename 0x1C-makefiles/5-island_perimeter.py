@@ -2,7 +2,7 @@
 
 def island_perimeter(grid):
     """
-    Calculate the perimeter of the island described in grid.
+    Calculate the perimeter of the island as described in grid.
 
     Args:
     grid (List[List[int]]): The grid representing the island.
